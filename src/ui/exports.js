@@ -77,6 +77,44 @@ function initExports(revision, mostRecentStats, obsIsAnyOverlayShowing) {
             }, 1000);
         });
 
+    const convertJsonToQasm = (jsonText) => {
+        const map = {
+            X: "x",
+            Y: "y",
+            Z: "z",
+            H: "h"
+        }
+        let qasmString = 'OPENQASM 2.0;\ninclude "qelib1.inc"\n';
+        //noinspection UnusedCatchParameterJS
+        var json = ""
+        try {
+            json = JSON.parse(jsonText)
+        }
+        catch(_) {
+            return "Invalid Circuit JSON."
+        }
+        const cols = json["cols"];
+        const numQubits = Math.max(...(cols.map((arr) => arr.length)));
+        const numCbits = cols.filter(arr => arr.includes("Measure"));
+        // HANDLE CASE WHEN No MEASUREMENTS
+        console.log(numCbits);
+        qasmString += `qreg q[${numQubits}];\n`
+        if (numCbits > 0) qasmString +=`creg c[${numCbits.length}];\n`;
+        
+        cols.forEach((col) => {
+            console.log(col)
+            col.forEach((gate, idx) => {
+                if (gate == '1') return;
+                console.log(gate);
+                var thisQasm = map[gate] + ` q[${idx}];\n`
+                qasmString += thisQasm;
+            });
+        });
+
+        return qasmString;
+
+    }
+
     // Export escaped link.
     (() => {
         const linkElement = /** @type {HTMLAnchorElement} */ document.getElementById('export-escaped-anchor');
@@ -98,11 +136,31 @@ function initExports(revision, mostRecentStats, obsIsAnyOverlayShowing) {
         setupButtonElementCopyToClipboard(copyButton, jsonTextElement, copyResultElement);
         revision.latestActiveCommit().subscribe(jsonText => {
             //noinspection UnusedCatchParameterJS
+            debugger;
             try {
                 let val = JSON.parse(jsonText);
                 jsonTextElement.innerText = JSON.stringify(val, null, '  ');
             } catch (_) {
                 jsonTextElement.innerText = jsonText;
+            }
+        });
+    })();
+
+    // Export QASM
+    (() => {
+        const qasmTextElement = /** @type {HTMLPreElement} */ document.getElementById('export-qasm-pre');
+        const copyButton = /** @type {HTMLButtonElement} */ document.getElementById('export-qasm-copy-button');
+        const copyResultElement = /** @type {HTMLElement} */ document.getElementById('export-qasm-copy-result');
+        setupButtonElementCopyToClipboard(copyButton, qasmTextElement, copyResultElement);
+        revision.latestActiveCommit().subscribe(jsonText => {
+            //noinspection UnusedCatchParameterJS
+            //debugger;
+            try {
+                let val = convertJsonToQasm(jsonText);
+                qasmTextElement.innerText = val;
+            } catch (_) {
+                console.error("ERROR")
+                qasmTextElement.innerText = jsonText;
             }
         });
     })();
