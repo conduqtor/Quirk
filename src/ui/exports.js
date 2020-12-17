@@ -97,7 +97,7 @@ function initExports(revision, mostRecentStats, obsIsAnyOverlayShowing) {
             "X^-½": "sxdg",
             "Measure": "measure"
         }
-        let qasmString = 'OPENQASM 2.0;\ninclude "qelib1.inc"\n';
+        let qasmString = 'OPENQASM 2.0;include "qelib1.inc";';//here
         //noinspection UnusedCatchParameterJS
         var json = ""
 
@@ -110,7 +110,6 @@ function initExports(revision, mostRecentStats, obsIsAnyOverlayShowing) {
             }
             // the way quirk works, if you have a control in any column, all gates in the column are controlled
             var numCtrls = arr.filter(elem => elem == controlGate).length;
-            //console.log(arr.filter(elem => Object.keys(map).includes(elem)))
             if (numCtrls > 2) throw new Error("Too many controls (max 2)");
 
             //check for unsupported gates
@@ -130,7 +129,6 @@ function initExports(revision, mostRecentStats, obsIsAnyOverlayShowing) {
             const ctrlQubits = ` q[${arr.indexOf("•")}],` + (numCtrls == 2 ? `q[${arr.lastIndexOf("•")}],` : ``);
 
             arr.forEach((gate, idx) => {
-                //console.log(gate)
                 if (gate == controlGate || gate == 1) return;
                 //if (!acceptedGates[numCtrls].includes(gate)) throw new Error(`Unsupported control gate (${ctrlString+map[gate]})`)
                 if (typeof gate == "string") {
@@ -138,16 +136,16 @@ function initExports(revision, mostRecentStats, obsIsAnyOverlayShowing) {
                     var targetQubits;
                     if (gate == "Swap") {
                         if (arr.filter(elem => elem == 'Swap').length != 2) throw new Error('Wrong number of swaps!');
-                        targetQubits = `q[${arr.indexOf('Swap')}],q[${arr.lastIndexOf('Swap')}];\n`;
+                        targetQubits = `q[${arr.indexOf('Swap')}],q[${arr.lastIndexOf('Swap')}];`;//here
                         arr[arr.lastIndexOf('Swap')] = arr[arr.indexOf('Swap')] = 1;
                     }
-                    else targetQubits = `q[${idx}];\n`;
+                    else targetQubits = `q[${idx}];`;//here
                     qasmStr = qasmStr + ctrlString + map[gate] + ctrlQubits + targetQubits;
                     //console.log(qasmStr);
                 }
                 else { //parametrized gate 
                     if(!acceptedGates[numCtrls].includes(gate["id"])) throw new Error(`Unsupported control gate (${ctrlString+gate["id"]})`)
-                    qasmStr = qasmStr + ctrlString + `${map[gate["id"]]}(${gate["arg"]})${ctrlQubits}q[${idx}];\n`;
+                    qasmStr = qasmStr + ctrlString + `${map[gate["id"]]}(${gate["arg"]})${ctrlQubits}q[${idx}];`;//here
                     //console.log(qasmStr);
                 }
 
@@ -160,12 +158,12 @@ function initExports(revision, mostRecentStats, obsIsAnyOverlayShowing) {
         try {
             json = JSON.parse(jsonText)
             const cols = json["cols"];
+            if (cols.length === 0) return "Empty circuit";
             const numQubits = Math.max(...(cols.map((arr) => arr.length)));
             const numCbits = cols.filter(arr => arr.includes("Measure")).length;
 
-            console.log(numCbits);
-            qasmString += `qreg q[${numQubits}];\n`
-            if (numCbits > 0) qasmString +=`creg c[${numCbits}];\n`;
+            qasmString += `qreg q[${numQubits}];`;//here
+            if (numCbits > 0) qasmString +=`creg c[${numCbits}];`;//here
             
             var measurements = 0;
 
@@ -187,66 +185,31 @@ function initExports(revision, mostRecentStats, obsIsAnyOverlayShowing) {
                     if (typeof gate == "string") {
                         if (!Object.keys(map).includes(gate)) throw new Error("Unsupported gate!");
                         if (gate == "Measure") {
-                            qasmString += `measure q[${idx}]->c[${measurements}];\n`;
+                            qasmString += `measure q[${idx}]->c[${measurements}];`;//here
                             measurements = measurements + 1;
                             return;
                         }
                         if (gate == "Swap") {
                             if (col.filter(elem => elem == 'Swap').length != 2) throw new Error('Wrong number of swaps!');
-                            var targetQubits = ` q[${col.indexOf('Swap')}],q[${col.lastIndexOf('Swap')}];\n`;
+                            var targetQubits = ` q[${col.indexOf('Swap')}],q[${col.lastIndexOf('Swap')}];`;//here
                             col[col.lastIndexOf('Swap')] = col[col.indexOf('Swap')] = 1;
                             qasmString += map[gate] + targetQubits;
                             return;
                         }
-                        qasmString += map[gate] + ` q[${idx}];\n`
+                        qasmString += map[gate] + ` q[${idx}];`;//here
                     }
                     else if(typeof gate == "object") {
                         if (!Object.keys(map).includes(gate["id"])) throw new Error("Unsupported gate!");
-                        qasmString += `${map[gate["id"]]}(${gate["arg"]}) q[${idx}];\n`
+                        qasmString += `${map[gate["id"]]}(${gate["arg"]}) q[${idx}];`;//here
                     }
                 });
-
-
-                //check for 
-                // var measurements = 0;
-                // //console.log(col)
-                // var thisQasm = ``;
-                // var controls = 0;
-                // col.forEach((gate, idx) => {
-                //     if (gate == 1) return;
-                //     if (typeof gate == "string") {
-                //         //console.log(gate);
-                //         if (gate == "Measure") {
-                //             thisQasm += `measure q[${idx}] -> c[${measurements}];\n`;
-                //             measurements = measurements + 1;
-                //             return;
-                //         }
-                //         if (gate == "•") {
-                //             thisQasm += `c`;
-                //             controls = controls + 1;
-                //             if (controls > 2) throw new Error("Too many controls");
-                //             return;
-                //         }
-    
-                //         if (controls > 0 && !(["X", "Z"].includes(gate))) throw new Error("Unsupported control gate");
-                //         controls = 0;
-                //         thisQasm += map[gate] + ` q[${idx}];\n`
-                //         qasmString += thisQasm;
-                //     }
-                //     else if(typeof gate == "object") {
-                //         //console.log(gate, "OBJ!")
-                //         thisQasm = `${map[gate[id]]}(${gate[arg]}) q[${idx}];\n`
-                //     }
-                // });
             });
         }
         catch(e) {
             console.error(e)
             return "Invalid Circuit JSON."
         }
-        console.log(qasmString)
         return qasmString;
-
     }
 
     // Export escaped link.
