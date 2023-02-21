@@ -1,23 +1,25 @@
-// Copyright 2017 Google Inc.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-import {DetailedError} from "src/base/DetailedError.js"
-import {Gate} from "src/circuit/Gate.js"
-import {GateCheckArgs} from "src/circuit/GateCheckArgs.js"
-import {Gates} from "src/gates/AllGates.js"
-import {seq, Seq} from "src/base/Seq.js"
-import {Util} from "src/base/Util.js"
+import {DetailedError} from "../base/DetailedError.js"
+import {Gate} from "./Gate.js"
+import {GateCheckArgs} from "./GateCheckArgs.js"
+import {Gates} from "../gates/AllGates.js"
+import {seq, Seq} from "../base/Seq.js"
+import {Util} from "../base/Util.js"
 
 /**
  * A column of gates in a circuit with many qubits.

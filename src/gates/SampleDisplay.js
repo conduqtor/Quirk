@@ -1,29 +1,31 @@
-// Copyright 2017 Google Inc.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-import {Config} from "src/Config.js"
-import {Gate} from "src/circuit/Gate.js"
-import {GatePainting} from "src/draw/GatePainting.js"
-import {MathPainter} from "src/draw/MathPainter.js"
-import {Point} from "src/math/Point.js"
-import {Rect} from "src/math/Rect.js"
-import {Util} from "src/base/Util.js"
+import {Config} from "../Config.js"
+import {Gate} from "../circuit/Gate.js"
+import {GatePainting} from "../draw/GatePainting.js"
+import {MathPainter} from "../draw/MathPainter.js"
+import {Point} from "../math/Point.js"
+import {Rect} from "../math/Rect.js"
+import {Util} from "../base/Util.js"
 import {
     probabilityStatTexture,
     probabilityPixelsToColumnVector,
     probabilityDataToJson
-} from "src/gates/ProbabilityDisplay.js"
+} from "./ProbabilityDisplay.js"
 
 /**
  * Looks up the simulated probability distribution and samples from it using the current graphics PRNG.

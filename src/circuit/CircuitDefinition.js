@@ -1,30 +1,32 @@
-// Copyright 2017 Google Inc.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-import {CircuitShaders} from "src/circuit/CircuitShaders.js"
-import {Config} from "src/Config.js"
-import {Controls} from "src/circuit/Controls.js"
-import {CustomGateSet} from "src/circuit/CustomGateSet.js"
-import {DetailedError} from "src/base/DetailedError.js"
-import {equate_Maps} from "src/base/Equate.js";
-import {Gate} from "src/circuit/Gate.js"
-import {GateColumn} from "src/circuit/GateColumn.js"
-import {GateShaders} from "src/circuit/GateShaders.js"
-import {Gates, INITIAL_STATES_TO_GATES} from "src/gates/AllGates.js"
-import {Point} from "src/math/Point.js"
-import {seq, Seq} from "src/base/Seq.js"
-import {Util} from "src/base/Util.js"
+import {CircuitShaders} from "./CircuitShaders.js"
+import {Config} from "../Config.js"
+import {Controls} from "./Controls.js"
+import {CustomGateSet} from "./CustomGateSet.js"
+import {DetailedError} from "../base/DetailedError.js"
+import {equate_Maps} from "../base/Equate.js";
+import {Gate} from "./Gate.js"
+import {GateColumn} from "./GateColumn.js"
+import {GateShaders} from "./GateShaders.js"
+import {Gates, INITIAL_STATES_TO_GATES} from "../gates/AllGates.js"
+import {Point} from "../math/Point.js"
+import {seq, Seq} from "../base/Seq.js"
+import {Util} from "../base/Util.js"
 
 /**
  * Defines a circuit layout, with wires and columns and gates.

@@ -1,30 +1,32 @@
-// Copyright 2017 Google Inc.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-import {DetailedError} from "src/base/DetailedError.js"
-import {ketArgs, ketShader} from "src/circuit/KetShaderUtil.js"
-import {Matrix} from "src/math/Matrix.js"
-import {Shaders} from "src/webgl/Shaders.js"
-import {Util} from "src/base/Util.js"
-import {WglArg} from "src/webgl/WglArg.js"
-import {WglConfiguredShader} from "src/webgl/WglConfiguredShader.js"
+import {DetailedError} from "../base/DetailedError.js"
+import {ketArgs, ketShader} from "./KetShaderUtil.js"
+import {Matrix} from "../math/Matrix.js"
+import {Shaders} from "../webgl/Shaders.js"
+import {Util} from "../base/Util.js"
+import {WglArg} from "../webgl/WglArg.js"
+import {WglConfiguredShader} from "../webgl/WglConfiguredShader.js"
 import {
     Inputs,
     Outputs,
     currentShaderCoder,
     makePseudoShaderWithInputsAndOutputAndCode
-} from "src/webgl/ShaderCoders.js"
+} from "../webgl/ShaderCoders.js"
 
 /**
  * Defines operations used by gates to operate on textures representing superpositions.

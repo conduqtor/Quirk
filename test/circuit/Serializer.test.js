@@ -1,32 +1,34 @@
-// Copyright 2017 Google Inc.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-import {Suite, assertThat, assertTrue} from "test/TestUtil.js"
-import {Serializer} from "src/circuit/Serializer.js"
+import {Suite, assertThat, assertTrue} from "../TestUtil.js"
+import {Serializer} from "../../src/circuit/Serializer.js"
 
-import {CircuitDefinition} from "src/circuit/CircuitDefinition.js"
-import {setGateBuilderEffectToCircuit} from "src/circuit/CircuitComputeUtil.js"
-import {Complex} from "src/math/Complex.js"
-import {CustomGateSet} from "src/circuit/CustomGateSet.js"
-import {describe} from "src/base/Describe.js"
-import {Gate, GateBuilder} from "src/circuit/Gate.js"
-import {GateColumn} from "src/circuit/GateColumn.js"
-import {Gates} from "src/gates/AllGates.js"
-import {Matrix} from "src/math/Matrix.js"
-import {MysteryGateMaker} from "src/gates/Joke_MysteryGate.js"
-import {seq} from "src/base/Seq.js"
-import {Util} from "src/base/Util.js"
+import {CircuitDefinition} from "../../src/circuit/CircuitDefinition.js"
+import {setGateBuilderEffectToCircuit} from "../../src/circuit/CircuitComputeUtil.js"
+import {Complex} from "../../src/math/Complex.js"
+import {CustomGateSet} from "../../src/circuit/CustomGateSet.js"
+import {describe} from "../../src/base/Describe.js"
+import {Gate, GateBuilder} from "../../src/circuit/Gate.js"
+import {GateColumn} from "../../src/circuit/GateColumn.js"
+import {Gates} from "../../src/gates/AllGates.js"
+import {Matrix} from "../../src/math/Matrix.js"
+import {MysteryGateMaker} from "../../src/gates/Joke_MysteryGate.js"
+import {seq} from "../../src/base/Seq.js"
+import {Util} from "../../src/base/Util.js"
 
 let suite = new Suite("Serializer");
 

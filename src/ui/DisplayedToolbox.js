@@ -1,29 +1,31 @@
-// Copyright 2017 Google Inc.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-import {CachablePainting} from "src/draw/CachablePainting.js"
-import {CircuitStats} from "src/circuit/CircuitStats.js"
-import {Config} from "src/Config.js"
-import {GateDrawParams} from "src/draw/GateDrawParams.js"
-import {GatePainting} from "src/draw/GatePainting.js"
-import {Hand} from "src/ui/Hand.js"
-import {MysteryGateSymbol, MysteryGateMaker} from "src/gates/Joke_MysteryGate.js"
-import {Rect} from "src/math/Rect.js"
-import {Painter} from "src/draw/Painter.js"
-import {Point} from "src/math/Point.js"
-import {seq} from "src/base/Seq.js"
-import {WidgetPainter} from "src/draw/WidgetPainter.js"
+import {CachablePainting} from "../draw/CachablePainting.js"
+import {CircuitStats} from "../circuit/CircuitStats.js"
+import {Config} from "../Config.js"
+import {GateDrawParams} from "../draw/GateDrawParams.js"
+import {GatePainting} from "../draw/GatePainting.js"
+import {Hand} from "../ui/Hand.js"
+import {MysteryGateSymbol, MysteryGateMaker} from "../gates/Joke_MysteryGate.js"
+import {Rect} from "../math/Rect.js"
+import {Painter} from "../draw/Painter.js"
+import {Point} from "../math/Point.js"
+import {seq} from "../base/Seq.js"
+import {WidgetPainter} from "../draw/WidgetPainter.js"
 
 class DisplayedToolbox {
     /**

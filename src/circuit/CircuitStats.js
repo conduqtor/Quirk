@@ -1,31 +1,33 @@
-// Copyright 2017 Google Inc.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+/**
+ * Copyright 2017 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-import {CircuitDefinition} from "src/circuit/CircuitDefinition.js"
-import {CircuitEvalContext} from "src/circuit/CircuitEvalContext.js"
-import {CircuitShaders} from "src/circuit/CircuitShaders.js"
-import {KetTextureUtil} from "src/circuit/KetTextureUtil.js"
-import {Controls} from "src/circuit/Controls.js"
-import {DetailedError} from "src/base/DetailedError.js"
-import {Matrix, complexVectorToReadableJson} from "src/math/Matrix.js"
-import {Shaders} from "src/webgl/Shaders.js"
-import {Serializer} from "src/circuit/Serializer.js"
-import {Util} from "src/base/Util.js"
-import {notifyAboutRecoveryFromUnexpectedError} from "src/fallback.js"
-import {advanceStateWithCircuit} from "src/circuit/CircuitComputeUtil.js"
-import {currentShaderCoder} from "src/webgl/ShaderCoders.js"
-import {WglTextureTrader} from "src/webgl/WglTextureTrader.js"
+import {CircuitDefinition} from "./CircuitDefinition.js"
+import {CircuitEvalContext} from "./CircuitEvalContext.js"
+import {CircuitShaders} from "./CircuitShaders.js"
+import {KetTextureUtil} from "./KetTextureUtil.js"
+import {Controls} from "./Controls.js"
+import {DetailedError} from "../base/DetailedError.js"
+import {Matrix, complexVectorToReadableJson} from "../math/Matrix.js"
+import {Shaders} from "../webgl/Shaders.js"
+import {Serializer} from "./Serializer.js"
+import {Util} from "../base/Util.js"
+import {notifyAboutRecoveryFromUnexpectedError} from "../fallback.js"
+import {advanceStateWithCircuit} from "./CircuitComputeUtil.js"
+import {currentShaderCoder} from "../webgl/ShaderCoders.js"
+import {WglTextureTrader} from "../webgl/WglTextureTrader.js"
 
 class CircuitStats {
     /**
